@@ -5,10 +5,10 @@ namespace BusinessLogic.Interfaces
     public interface IPizzaService
     {
         IEnumerable<PizzaDto> GetAll();
-        IEnumerable<PizzaDto> Get(IEnumerable<int> ids);
+        //IEnumerable<PizzaDto> Get(IEnumerable<int> ids);
         PizzaDto? Get(int id);
-        void Create(PizzaDto product);
-        void Edit(PizzaDto product);
+        void Create(PizzaDto pizza);
+        void Edit(PizzaDto pizza);
         void Delete(int id);
     }
 }

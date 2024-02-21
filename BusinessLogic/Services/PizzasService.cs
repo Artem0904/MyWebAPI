@@ -3,6 +3,7 @@ using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
 using DataAccess.Data;
 using DataAccess.Data.Entities;
+using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,54 +16,56 @@ namespace BusinessLogic.Services
     public class PizzasService : IPizzaService
     {
         private readonly IMapper mapper;
-        private readonly PizzeriaDbContext context;
+        private readonly IRepository<Pizza> pizzasRepo;
 
-        public PizzasService(IMapper mapper, PizzeriaDbContext context)
+        public PizzasService(IMapper mapper, IRepository<Pizza> pizzasRepo)
         {
             this.mapper = mapper;
-            this.context = context;
+            this.pizzasRepo = pizzasRepo;
         }
 
         public void Create(PizzaDto pizza)
         {
-            context.Pizzas.Add(mapper.Map<Pizza>(pizza));
-            context.SaveChanges();
+            pizzasRepo.Insert(mapper.Map<Pizza>(pizza));
+            pizzasRepo.Save();
         }
 
         public void Delete(int id)
         {
-            var pizza = context.Pizzas.Find(id);
+            var pizza = pizzasRepo.GetByID(id);
 
             if (pizza == null) return; // TODO: throw exception
 
-            context.Remove(pizza);
-            context.SaveChanges();
+            pizzasRepo.Delete(pizza);
+            pizzasRepo.Save();
+
         }
 
         public void Edit(PizzaDto pizza)
         {
-            context.Pizzas.Update(mapper.Map<Pizza>(pizza));
-            context.SaveChanges();
+            pizzasRepo.Update(mapper.Map<Pizza>(pizza));
+            pizzasRepo.Save();
+
         }
 
         public PizzaDto? Get(int id)
         {
-            var item = context.Pizzas.Find(id);
-            if (item == null) return null;
+            var pizza = pizzasRepo.GetByID(id);
+            if (pizza == null) return null;
 
-            var dto = mapper.Map<PizzaDto>(item);
+            var dto = mapper.Map<PizzaDto>(pizza);
 
             return dto;
         }
 
-        public IEnumerable<PizzaDto> Get(IEnumerable<int> ids)
-        {
-            return mapper.Map<List<PizzaDto>>(context.Pizzas.ToList());
-        }
+        //public IEnumerable<PizzaDto> Get(IEnumerable<int> ids)
+        //{
+        //    return mapper.Map<List<PizzaDto>>(pizzasRepo.Get(x => ids.Contains(x.Id), includeProperties: "Category"));
+        //}
 
         public IEnumerable<PizzaDto> GetAll()
         {
-            return mapper.Map<List<PizzaDto>>(context.Pizzas.ToList());
+            return mapper.Map<List<PizzaDto>>(pizzasRepo.GetAll());
         }
 
     }

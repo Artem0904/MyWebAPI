@@ -14,14 +14,14 @@ namespace BusinessLogic.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
-        //public static void AddFluentValidators(this IServiceCollection services)
-        //{
-        //    services.AddFluentValidationAutoValidation();
-        //    // enable client-side validation
-        //    services.AddFluentValidationClientsideAdapters();
-        //    // Load an assembly reference rather than using a marker type.
-        //    services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-        //}
+        public static void AddFluentValidators(this IServiceCollection services)
+        {
+            services.AddFluentValidationAutoValidation();
+            // enable client-side validation
+            services.AddFluentValidationClientsideAdapters();
+            // Load an assembly reference rather than using a marker type.
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        }
 
         public static void AddCustomServices(this IServiceCollection services)
         {

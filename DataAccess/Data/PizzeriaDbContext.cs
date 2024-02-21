@@ -29,8 +29,15 @@ namespace DataAccess.Data
                 new Pizza() { Id = 7, Name = "Supreme", Price = 10, Description = "Very good!"},
                 new Pizza() { Id = 8, Name = "Cheese Lover's", Price = 11, Description = "Good!"},
                 new Pizza() { Id = 9, Name = "Buffalo Chicken", Price = 12, Description = "Cool!"},
-                new Pizza() { Id = 10, Name = "Mediterranean ", Price = 13, Description = "Cool!"},
+                new Pizza() { Id = 10, Name = "Mediterranean", Price = 13, Description = "Cool!"},
             });
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            var str = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Pizzeria;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            optionsBuilder.UseSqlServer(str);
         }
     }
 }

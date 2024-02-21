@@ -1,8 +1,10 @@
 using BusinessLogic;
+using BusinessLogic.Extensions;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using DataAccess;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
@@ -18,9 +20,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext(connStr);
+builder.Services.AddRepositories();
 
 builder.Services.AddAutoMapper();
-//builder.Services.AddFluentValidators();
+builder.Services.AddFluentValidators();
 
 builder.Services.AddCustomServices();
 builder.Services.AddScoped<IPizzaService, PizzasService>();
@@ -50,6 +53,7 @@ app.Run();
     ід
     назва
     ціна
+    час приготування
     опис
     +категорія
 
@@ -66,14 +70,26 @@ app.Run();
     веганська або ні
 
 //Інградієнти
+    ід
+    назва
+    грамовка (може)
 
 //Розміри
+    ід
+    велика, середня, мала або в см
 
 
-//Напої
+//Напої (додатково)
+    ід
+    назва
+    ціна
 
+//Клієнти (пізніше)
+    ід
+    ім'я
+    логін   
+    пошта
+    +замовлення
 
-//Клієнти
-
-//Робітники
+//Робітники (додатково)
 */
