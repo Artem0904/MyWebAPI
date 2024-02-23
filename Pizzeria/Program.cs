@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Pizzeria;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseMiddleware<GlobalErrorHandler>();
 
 app.UseAuthorization();
 

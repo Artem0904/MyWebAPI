@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace BusinessLogic.Services
         {
             var pizza = pizzasRepo.GetByID(id);
 
-            if (pizza == null) return; // TODO: throw exception
+            if (pizza == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
 
             pizzasRepo.Delete(pizza);
             pizzasRepo.Save();
@@ -51,7 +52,8 @@ namespace BusinessLogic.Services
         public PizzaDto? Get(int id)
         {
             var pizza = pizzasRepo.GetByID(id);
-            if (pizza == null) return null;
+            if (id < 0) throw new HttpException("Id must be positive:)", HttpStatusCode.BadRequest);
+            if (pizza == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
 
             var dto = mapper.Map<PizzaDto>(pizza);
 
