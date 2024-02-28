@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,17 @@ namespace DataAccess.Data
 {
     public class PizzeriaDbContext : DbContext
     {
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<PizzasSize> PizzasSizes { get; set; }
 
         public PizzeriaDbContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
             modelBuilder.Entity<Pizza>().HasData(new[]
             {
                 new Pizza() { Id = 1, Name = "Margherita", Price = 10, Description = "Good!"},
