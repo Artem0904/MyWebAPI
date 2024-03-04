@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data.Entities
 {
-    public class PizzasSize
+    public class BeveragesSize
     {
-        public int Id {  get; set; }
-        public int Diametr {  get; set; }
-        public ICollection<Pizza> Pizzas { get; set; } = new HashSet<Pizza>();
+        public int Id { get; set; }
+        public int Volume { get; set; }
         public decimal PriceModifier { get; set; }
-
+        public ICollection<Beverage> Beverages { get; set; } = new HashSet<Beverage>();
     }
 }

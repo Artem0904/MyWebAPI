@@ -9,15 +9,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data.Configurations
 {
-    public class CategoryConfigs : IEntityTypeConfiguration<Category>
+    internal class BeveragesSizeConfs : IEntityTypeConfiguration<BeveragesSize>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<BeveragesSize> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
-
-            builder.HasMany(x => x.Pizzas).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
-
+            builder.Property(x => x.Volume).IsRequired();
+            builder.Property(x => x.PriceModifier).IsRequired();
         }
     }
 }

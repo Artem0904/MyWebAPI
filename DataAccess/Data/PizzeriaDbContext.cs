@@ -13,10 +13,12 @@ namespace DataAccess.Data
 {
     public class PizzeriaDbContext : DbContext
     {
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzasSize> PizzasSizes { get; set; }
+        public DbSet<Beverage> Beverages { get; set; }
+        public DbSet<BeveragesSize> BeveragesSize { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public PizzeriaDbContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

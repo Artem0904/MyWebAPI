@@ -13,12 +13,10 @@ namespace DataAccess.Data.Entities
         public decimal Price { get; set; }
         public string? Description { get; set; }
         public DateTime CookingTime { get; set; }
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
         public int PizzasSizeId { get; set; }
         public PizzasSize PizzasSize { get; set; }
-
         public ICollection<Ingredient> Ingredients { get; set; } = new HashSet<Ingredient>();
+        public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
 
         //Піци
         //ід
