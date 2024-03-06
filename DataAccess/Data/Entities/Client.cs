@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data.Entities
 {
-    public class Beverage
+    public class Client : IdentityUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price {  get; set; }
+        public ICollection<Table> Tables { get; set; } = new HashSet<Table>();
         public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
-
     }
 }

@@ -16,9 +16,7 @@ namespace DataAccess.Data.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Price).IsRequired();
-            builder.Property(x => x.BeveragesSizeId).IsRequired();
 
-            builder.HasOne(x => x.BeveragesSize).WithMany(x => x.Beverages).HasForeignKey(x => x.BeveragesSizeId);
             builder.HasMany(x => x.Orders).WithMany(x => x.Beverages);
         }
     }

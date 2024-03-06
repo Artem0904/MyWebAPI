@@ -17,7 +17,7 @@ namespace DataAccess.Data.Configurations
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
             builder.Property(x => x.Price).IsRequired();
             builder.Property(x => x.Description).IsRequired(false);
-            builder.Property(x => x.CookingTime).IsRequired();
+            builder.Property(x => x.CookingTimeMin).IsRequired();
 
             builder.HasOne(x => x.PizzasSize).WithMany(x => x.Pizzas).HasForeignKey(x => x.PizzasSizeId);
             builder.HasMany(x => x.Orders).WithMany(x => x.Pizzas);
