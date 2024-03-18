@@ -1,6 +1,7 @@
 ﻿using DataAccess.Data;
 using DataAccess.Data.Entities;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,16 @@ namespace DataAccess
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        }
+
+        public static void AddIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<Client, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+               .AddDefaultTokenProviders()
+               .AddEntityFrameworkStores<PizzeriaDbContext>();
         }
     }
        

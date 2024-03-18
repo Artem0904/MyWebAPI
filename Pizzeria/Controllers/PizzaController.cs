@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,7 @@ namespace Pizzeria.Controllers
         }
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public IActionResult Get([FromRoute] int id)
         {
             return Ok(pizzasService.Get(id));

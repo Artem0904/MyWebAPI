@@ -11,7 +11,7 @@ namespace DataAccess.Data.Entities
         public int Id {  get; set; }
         public int Diametr {  get; set; }
         public decimal PriceModifier { get; set; }
-        public ICollection<Pizza> Pizzas { get; set; } = new HashSet<Pizza>();
+        public ICollection<Pizza>? Pizzas { get; set; } = new HashSet<Pizza>();
 
     }
 }

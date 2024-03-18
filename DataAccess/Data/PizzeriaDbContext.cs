@@ -18,6 +18,7 @@ namespace DataAccess.Data
         public DbSet<PizzasSize> PizzasSizes { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Order> Tables { get; set; }
         public DbSet<Client> Clients { get; set; }
 
         public PizzeriaDbContext(DbContextOptions options) : base(options) { }
@@ -30,6 +31,12 @@ namespace DataAccess.Data
             {
                 new Beverage { Id = 1, Name="Cola", Price = 2},
                 new Beverage { Id = 2, Name="Sprite",  Price = 1},
+            });
+
+            modelBuilder.Entity<PizzasSize>().HasData(new[]
+            {
+                new PizzasSize { Id = 1, Diametr = 30, PriceModifier = 2},
+                new PizzasSize { Id = 2, Diametr = 15,  PriceModifier = 1},
             });
 
             modelBuilder.Entity<Pizza>().HasData(new[]
@@ -45,6 +52,8 @@ namespace DataAccess.Data
                 new Pizza() { Id = 9, Name = "Buffalo Chicken", Price = 12, Description = "Cool!", CookingTimeMin = 30, PizzasSizeId = 1},
                 new Pizza() { Id = 10, Name = "Mediterranean", Price = 13, Description = "Cool!", CookingTimeMin = 30, PizzasSizeId = 1},
             });
+
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
