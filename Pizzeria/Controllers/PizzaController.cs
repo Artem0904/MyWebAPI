@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,14 +25,15 @@ namespace Pizzeria.Controllers
         }
 
         [HttpGet("{id:int}")]
-        [Authorize]
+        //[Authorize] // based on cookies
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // based on JWT
         public IActionResult Get([FromRoute] int id)
         {
             return Ok(pizzasService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] PizzaDto model)
+        public IActionResult Create([FromForm] CreatePizzaModel model)
         {
             pizzasService.Create(model);
             return Ok();

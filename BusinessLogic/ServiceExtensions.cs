@@ -27,6 +27,7 @@ namespace BusinessLogic.Extensions
         {
             services.AddScoped<IPizzaService, PizzasService>();
             services.AddScoped<IAccountsService, AccountsService>();
+            services.AddScoped<IJwtService, JwtService>();
         }
     }
 }

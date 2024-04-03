@@ -25,7 +25,7 @@ namespace BusinessLogic.Services
             this.pizzasRepo = pizzasRepo;
         }
 
-        public void Create(PizzaDto pizza)
+        public void Create(CreatePizzaModel pizza)
         {
             pizzasRepo.Insert(mapper.Map<Pizza>(pizza));
             pizzasRepo.Save();
