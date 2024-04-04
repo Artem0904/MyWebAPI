@@ -12,14 +12,14 @@ using System.Xml.Linq;
 
 namespace DataAccess.Data
 {
-    public class PizzeriaDbContext : IdentityDbContext<Client>
+    public class PizzeriaDbContext : IdentityDbContext<User>
     {
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzasSize> PizzasSizes { get; set; }
         public DbSet<Beverage> Beverages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Order> Tables { get; set; }
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public PizzeriaDbContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

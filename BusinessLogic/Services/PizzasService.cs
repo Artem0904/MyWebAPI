@@ -62,7 +62,7 @@ namespace BusinessLogic.Services
 
         //public IEnumerable<PizzaDto> Get(IEnumerable<int> ids)
         //{
-        //    return mapper.Map<List<PizzaDto>>(pizzasRepo.Get(x => ids.Contains(x.Id), includeProperties: "Category"));
+        //    return mapper.Map<List<PizzaDto>>(pizzasRepo.Get(x => ids.Contains(x.Id), includeProperties: "PizzasSize"));
         //}
 
         public IEnumerable<PizzaDto> GetAll()

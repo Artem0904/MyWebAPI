@@ -193,14 +193,14 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_AspNetUsers_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_Order_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -213,14 +213,14 @@ namespace DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CountChairs = table.Column<int>(type: "int", nullable: false),
                     IsReserved = table.Column<bool>(type: "bit", nullable: false),
-                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Table", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Table_AspNetUsers_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_Table_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -376,9 +376,9 @@ namespace DataAccess.Migrations
                 column: "OrdersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_ClientId",
+                name: "IX_Order_UserId",
                 table: "Order",
-                column: "ClientId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderPizza_PizzasId",
@@ -391,9 +391,9 @@ namespace DataAccess.Migrations
                 column: "PizzasSizeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Table_ClientId",
+                name: "IX_Table_UserId",
                 table: "Table",
-                column: "ClientId");
+                column: "UserId");
         }
 
         /// <inheritdoc />

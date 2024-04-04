@@ -11,7 +11,7 @@ namespace BusinessLogic.Interfaces
     public interface IJwtService
     {
         // ------- Access Token
-        IEnumerable<Claim> GetClaims(Client client);
+        IEnumerable<Claim> GetClaims(User user);
         string CreateToken(IEnumerable<Claim> claims);
     }
 }

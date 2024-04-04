@@ -17,7 +17,7 @@ namespace BusinessLogic.Extensions
         public static void AddFluentValidators(this IServiceCollection services)
         {
             services.AddFluentValidationAutoValidation();
-            // enable client-side validation
+            // enable user-side validation
             services.AddFluentValidationClientsideAdapters();
             // Load an assembly reference rather than using a marker type.
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());

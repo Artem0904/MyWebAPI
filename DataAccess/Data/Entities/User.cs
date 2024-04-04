@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data.Entities
 {
-    public class Client : IdentityUser
+    public class User : IdentityUser
     {
         public ICollection<Table> Tables { get; set; } = new HashSet<Table>();
         public ICollection<Order> Orders { get; set; } = new HashSet<Order>();

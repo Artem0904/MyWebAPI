@@ -14,13 +14,13 @@ namespace BusinessLogic.Services
 {
     internal class AccountsService : IAccountsService
     {
-        private readonly UserManager<Client> userManager;
-        private readonly SignInManager<Client> signInManager;
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
         private readonly IMapper mapper;
         private readonly IJwtService jwtService;
 
-        public AccountsService(UserManager<Client> userManager,
-                                SignInManager<Client> signInManager,
+        public AccountsService(UserManager<User> userManager,
+                                SignInManager<User> signInManager,
                                 IMapper mapper,
                                 IJwtService jwtService)
         {
@@ -35,14 +35,14 @@ namespace BusinessLogic.Services
             // TODO: validation
 
             // check user
-            var client = await userManager.FindByEmailAsync(model.Email);
+            var user = await userManager.FindByEmailAsync(model.Email);
 
-            if (client != null)
+            if (user != null)
                 throw new HttpException("Email is already exists.", HttpStatusCode.BadRequest);
 
             // create user
-            var newClient = mapper.Map<Client>(model);
-            var result = await userManager.CreateAsync(newClient, model.Password);
+            var newUser = mapper.Map<User>(model);
+            var result = await userManager.CreateAsync(newUser, model.Password);
 
             if (!result.Succeeded)
                 throw new HttpException(string.Join(" ", result.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
@@ -50,16 +50,16 @@ namespace BusinessLogic.Services
 
         public async Task<LoginResponseDto> Login(LoginModel model)
         {
-            var client = await userManager.FindByEmailAsync(model.Email);
+            var user = await userManager.FindByEmailAsync(model.Email);
 
-            if (client == null || !await userManager.CheckPasswordAsync(client, model.Password))
+            if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
                 throw new HttpException("Invalid user login or password.", HttpStatusCode.BadRequest);
 
-            await signInManager.SignInAsync(client, true);
+            await signInManager.SignInAsync(user, true);
 
             return new LoginResponseDto
             {
-                Token = jwtService.CreateToken(jwtService.GetClaims(client))
+                Token = jwtService.CreateToken(jwtService.GetClaims(user))
             };
         }
 

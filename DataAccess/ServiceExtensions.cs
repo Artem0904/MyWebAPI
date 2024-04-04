@@ -21,7 +21,7 @@ namespace DataAccess
 
         public static void AddIdentity(this IServiceCollection services)
         {
-            services.AddIdentity<Client, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
             })

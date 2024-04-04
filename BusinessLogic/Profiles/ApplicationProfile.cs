@@ -20,7 +20,7 @@ namespace BusinessLogic.Profiles
             CreateMap<CreatePizzaModel, Pizza>()
                 .ReverseMap();
 
-            CreateMap<RegisterModel, Client>()
+            CreateMap<RegisterModel, User>()
                 .ForMember(x => x.UserName, opts => opts.MapFrom(s => s.Email));
         }
     }

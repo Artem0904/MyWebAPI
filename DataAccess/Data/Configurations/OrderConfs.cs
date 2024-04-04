@@ -10,9 +10,9 @@ namespace DataAccess.Data.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.TotalPrice).IsRequired();
-            builder.Property(x => x.ClientId).IsRequired(false);
+            builder.Property(x => x.UserId).IsRequired(false);
 
-            builder.HasOne(x => x.Client).WithMany(x => x.Orders).HasForeignKey(x => x.ClientId);
+            builder.HasOne(x => x.User).WithMany(x => x.Orders).HasForeignKey(x => x.UserId);
             builder.HasMany(x => x.Pizzas).WithMany(x => x.Orders);
             builder.HasMany(x => x.Beverages).WithMany(x => x.Orders);
         }

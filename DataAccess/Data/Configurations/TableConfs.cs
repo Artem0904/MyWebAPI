@@ -17,7 +17,7 @@ namespace DataAccess.Data.Configurations
             builder.Property(x => x.CountChairs).IsRequired();
             builder.Property(x => x.IsReserved).IsRequired();
 
-            builder.HasOne(x => x.Client).WithMany(x => x.Tables).HasForeignKey(x => x.ClientId);
+            builder.HasOne(x => x.User).WithMany(x => x.Tables).HasForeignKey(x => x.UserId);
         }
     }
 }

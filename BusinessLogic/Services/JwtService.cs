@@ -39,12 +39,12 @@ namespace BusinessLogic.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public IEnumerable<Claim> GetClaims(Client client)
+        public IEnumerable<Claim> GetClaims(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, client.Id),
-                new Claim(ClaimTypes.Email, client.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Email, user.Email),
             };
 
             //var roles = userManager.GetRolesAsync(user).Result;
