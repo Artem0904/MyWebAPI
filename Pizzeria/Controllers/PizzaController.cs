@@ -9,27 +9,22 @@ namespace Pizzeria.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PizzaController : ControllerBase
+    public class PizzaController(IPizzaService pizzasService) : ControllerBase
     {
-        private readonly IPizzaService pizzasService;
-
-        public PizzaController(IPizzaService pizzasService)
-        {
-            this.pizzasService = pizzasService;
-        }
+        private readonly IPizzaService pizzasService = pizzasService;
 
         [HttpGet("all")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(pizzasService.GetAll());
+            return Ok(await pizzasService.GetAll());
         }
 
         [HttpGet("{id:int}")]
         //[Authorize] // based on cookies
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // based on JWT
-        public IActionResult Get([FromRoute] int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
-            return Ok(pizzasService.Get(id));
+            return Ok(await pizzasService.Get(id));
         }
 
         [HttpPost]
@@ -52,6 +47,12 @@ namespace Pizzeria.Controllers
         {
             pizzasService.Delete(id);
             return Ok();
+        }
+
+        [HttpGet("pizzaSizes")]
+        public IActionResult GetCategories()
+        {
+            return Ok(pizzasService.GetAllPizzaSizes());
         }
     }
 }

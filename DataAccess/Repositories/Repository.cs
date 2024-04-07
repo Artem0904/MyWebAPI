@@ -1,11 +1,17 @@
-﻿using DataAccess.Data;
+﻿using Ardalis.Specification.EntityFrameworkCore;
+using Ardalis.Specification;
+using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace DataAccess.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        [JsonIgnore]
+        [NonSerialized]
         internal PizzeriaDbContext context;
         internal DbSet<TEntity> dbSet;
 
@@ -20,35 +26,7 @@ namespace DataAccess.Repositories
             return dbSet.ToList();
         }
 
-        public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
-        {
-            IQueryable<TEntity> query = dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
-        }
-
-        public virtual TEntity GetByID(object id)
+        public virtual TEntity GetById(object id)
         {
             return dbSet.Find(id);
         }
@@ -82,6 +60,22 @@ namespace DataAccess.Repositories
         public void Save()
         {
             context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
+        }
+
+        public async Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
+        }
+
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> specification)
+        {
+            var evaluator = new SpecificationEvaluator();
+            return evaluator.GetQuery(dbSet, specification);
         }
     }
 }

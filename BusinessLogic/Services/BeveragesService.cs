@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
 
         public void Delete(int id)
         {
-            var beverage = beveragesRepo.GetByID(id);
+            var beverage = beveragesRepo.GetById(id);
 
             if (beverage == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
 
@@ -44,7 +44,7 @@ namespace BusinessLogic.Services
 
         public BeverageDto? Get(int id)
         {
-            var beverage = beveragesRepo.GetByID(id);
+            var beverage = beveragesRepo.GetById(id);
             if (id < 0) throw new HttpException("Id must be positive:)", HttpStatusCode.BadRequest);
             if (beverage == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
 

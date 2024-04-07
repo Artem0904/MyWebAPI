@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data.Entities
 {
-    public class PizzasSize
+    public class PizzaSize
     {
         public int Id {  get; set; }
         public int Diametr {  get; set; }

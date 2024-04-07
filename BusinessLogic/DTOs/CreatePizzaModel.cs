@@ -12,6 +12,6 @@ namespace BusinessLogic.DTOs
         public decimal Price { get; set; }
         public string? Description { get; set; }
         public int CookingTimeMin { get; set; }
-        public int PizzasSizeId { get; set; }
+        public int PizzaSizeId { get; set; }
     }
 }

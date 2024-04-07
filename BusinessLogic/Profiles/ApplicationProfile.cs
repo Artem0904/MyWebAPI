@@ -14,10 +14,13 @@ namespace BusinessLogic.Profiles
         public ApplicationProfile()
         {
             CreateMap<PizzaDto, Pizza>()
-                .ForMember(x => x.PizzasSize, opt => opt.Ignore())
+                .ForMember(x => x.PizzaSize, opt => opt.Ignore())
                 .ReverseMap();
 
             CreateMap<CreatePizzaModel, Pizza>()
+                .ReverseMap();
+
+            CreateMap<PizzaSizeDto, PizzaSize>()
                 .ReverseMap();
 
             CreateMap<RegisterModel, User>()
