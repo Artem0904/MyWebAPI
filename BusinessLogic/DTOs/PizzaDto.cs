@@ -15,5 +15,6 @@ namespace BusinessLogic.DTOs
         public int CookingTimeMin { get; set; }
         public int? PizzaSizeId { get; set; }
         public int? PizzaSizeDiametr { get; set; }
+        public string? ImageUrl { get; set; }
     }
 }

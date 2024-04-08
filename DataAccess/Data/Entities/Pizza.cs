@@ -14,6 +14,7 @@ namespace DataAccess.Data.Entities
         public string? Description { get; set; }
         public int CookingTimeMin { get; set; }
         public int PizzaSizeId { get; set; }
+        public string? ImageUrl { get; set; } 
         public PizzaSize PizzaSize { get; set; }
         public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
