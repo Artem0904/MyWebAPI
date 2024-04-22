@@ -50,7 +50,7 @@ app.UseMiddleware<GlobalErrorHandler>();
 
 app.UseCors(options =>
 {
-    options.WithOrigins("http://localhost:4200", "http://localhost:55756")
+    options.WithOrigins("http://localhost:4200", "http://localhost:55756", "http://localhost:3000", "http://localhost:3001")
         .AllowAnyMethod()
         .AllowAnyHeader();
 });
