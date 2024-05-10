@@ -71,7 +71,7 @@ namespace BusinessLogic.Services
 
         public async Task<IEnumerable<PizzaDto>> GetAll()
         {
-            return mapper.Map<List<PizzaDto>>(await pizzasRepo.GetListBySpec(new PizzaSpecs.All()));
+            return mapper.Map<List<PizzaDto>>(await pizzasRepo.GetListBySpec(new PizzaSpecs.All())); 
         }
 
         public IEnumerable<PizzaSizeDto> GetAllPizzaSizes()

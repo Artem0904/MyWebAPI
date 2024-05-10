@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BusinessLogic.DTOs;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Specifications;
 using DataAccess.Data.Entities;
 using DataAccess.Repositories;
 using System.Net;
@@ -42,18 +43,18 @@ namespace BusinessLogic.Services
 
         }
 
-        public BeverageDto? Get(int id)
+        public async Task<BeverageDto?> Get(int id)
         {
-            var beverage = beveragesRepo.GetById(id);
             if (id < 0) throw new HttpException("Id must be positive:)", HttpStatusCode.BadRequest);
-            if (beverage == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
+            var pizza = await beveragesRepo.GetItemBySpec(new BeverageSpecs.ById(id));
+            if (pizza == null) throw new HttpException("Product not found.", HttpStatusCode.NotFound);
 
-            var dto = mapper.Map<BeverageDto>(beverage);
+            var dto = mapper.Map<BeverageDto>(pizza);
 
             return dto;
         }
 
-        public IEnumerable<BeverageDto> GetAll()
+        public  IEnumerable<BeverageDto> GetAll()
         {
             return mapper.Map<List<BeverageDto>>(beveragesRepo.GetAll());
         }

@@ -25,6 +25,9 @@ namespace BusinessLogic.Profiles
 
             CreateMap<RegisterModel, User>()
                 .ForMember(x => x.UserName, opts => opts.MapFrom(s => s.Email));
+
+            CreateMap<BeverageDto, Beverage>()
+               .ReverseMap();
         }
     }
 }

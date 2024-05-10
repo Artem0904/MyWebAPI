@@ -33,6 +33,7 @@ builder.Services.AddFluentValidators();
 
 builder.Services.AddCustomServices();
 builder.Services.AddScoped<IPizzaService, PizzasService>();
+builder.Services.AddScoped<IBeverageService, BeveragesService>();
 
 var app = builder.Build();
 
