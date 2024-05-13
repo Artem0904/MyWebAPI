@@ -19,7 +19,7 @@ namespace BusinessLogic.Services
             this.beveragesRepo = beveragesRepo;
         }
 
-        public void Create(BeverageDto beverage)
+        public void Create(BeverageCreateModel beverage)
         {
             beveragesRepo.Insert(mapper.Map<Beverage>(beverage));
             beveragesRepo.Save();

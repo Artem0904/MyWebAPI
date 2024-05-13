@@ -6,7 +6,7 @@ namespace BusinessLogic.Interfaces
     {
         IEnumerable<BeverageDto> GetAll();
         Task<BeverageDto?> Get(int id);
-        void Create(BeverageDto pizza);
+        void Create(BeverageCreateModel pizza);
         void Edit(BeverageDto pizza);
         void Delete(int id);
     }

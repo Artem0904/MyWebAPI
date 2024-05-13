@@ -14,7 +14,7 @@ namespace BusinessLogic.Profiles
         public ApplicationProfile()
         {
             CreateMap<PizzaDto, Pizza>()
-                .ForMember(x => x.PizzaSize, opt => opt.Ignore())
+                .ForMember(x => x.PizzaSize, opt => opt.Ignore()) 
                 .ReverseMap();
 
             CreateMap<CreatePizzaModel, Pizza>()
@@ -27,6 +27,9 @@ namespace BusinessLogic.Profiles
                 .ForMember(x => x.UserName, opts => opts.MapFrom(s => s.Email));
 
             CreateMap<BeverageDto, Beverage>()
+               .ReverseMap(); 
+            
+            CreateMap<BeverageCreateModel, Beverage>()
                .ReverseMap();
         }
     }

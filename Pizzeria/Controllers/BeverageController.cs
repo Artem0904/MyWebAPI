@@ -26,7 +26,7 @@ namespace Pizzeria.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm] BeverageDto model)
+        public IActionResult Create([FromForm] BeverageCreateModel model)
         {
             beveragesService.Create(model);
             return Ok();
