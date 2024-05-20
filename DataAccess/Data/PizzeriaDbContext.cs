@@ -29,8 +29,8 @@ namespace DataAccess.Data
 
             modelBuilder.Entity<Beverage>().HasData(new[]
             {
-                new Beverage { Id = 1, Name="Cola", Price = 2},
-                new Beverage { Id = 2, Name="Sprite",  Price = 1},
+                new Beverage { Id = 1, Name="Cola", Price = 2, ImageUrl="https://cooker.net.ua/upload/iblock/74b/bezalkogolniy-napiy-coca-cola-0-5l-720.jpg"},
+                new Beverage { Id = 2, Name="Sprite",  Price = 1, ImageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSARjshJFLu9f9_xccsPoCJ3zJirTZUpkpbmq09lyHSKQ&s"},
             });
 
             modelBuilder.Entity<PizzaSize>().HasData(new[]
